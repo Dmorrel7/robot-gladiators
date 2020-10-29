@@ -8,9 +8,9 @@ var fightOrSkip = function() {
         alert("You need to provide a valid answer! Please try again!");
         return fightOrSkip();
     }
-    
+
     promptFight = promptFight.toLowerCase();
-        
+    
     if (promptFight === "skip") {
         // confirm player wants to skip
         var confirmSkip = window.confirm("are you sure you'd like to quit?");
@@ -23,14 +23,19 @@ var fightOrSkip = function() {
         console.log("playerInfo.money", playerInfo.money);
         
         return true;
+
     }
 }
+        return false;
 }
 
 var fight = function(enemy) {
 
     while(enemy.health > 0 && playerInfo.health > 0) {
-        fightOrSkip();
+        if (fightOrSkip()) {
+            // if true, leave fight by checking loop
+            break;
+        }
        
     //Subtract the value of playerAttack from enemy.health
     // generate random damage value based on player's attack power
